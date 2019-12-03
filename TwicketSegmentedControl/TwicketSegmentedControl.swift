@@ -13,7 +13,7 @@ public protocol TwicketSegmentedControlDelegate: class {
 }
 
 open class TwicketSegmentedControl: UIControl {
-    open static let height: CGFloat = Constants.height + Constants.topBottomMargin * 2
+    public static let height: CGFloat = Constants.height + Constants.topBottomMargin * 2
 
     private struct Constants {
         static let height: CGFloat = 30
@@ -88,7 +88,7 @@ open class TwicketSegmentedControl: UIControl {
         }
     }
 
-    open var font: UIFont = UIFont.systemFont(ofSize: 15, weight: UIFontWeightMedium) {
+    open var font: UIFont = UIFont.systemFont(ofSize: 15, weight: .medium) {
         didSet {
             updateLabelsFont(with: font)
         }
@@ -253,8 +253,11 @@ open class TwicketSegmentedControl: UIControl {
         case .changed:
             let location = panGesture.location(in: self)
             sliderView.center.x = location.x - correction
-        case .possible: ()
-        }
+        case .possible:
+            break
+        @unknown default:
+            break
+      }
     }
 
     // MARK: Slider position
